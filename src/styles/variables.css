@@ -1,0 +1,10 @@
+:root {
+  --bmw-black: #000000;
+  --bmw-white: #FFFFFF;
+  --bmw-blue: #0066B3;
+  --bmw-blue-dark: #004d8c;
+  --bmw-blue-light: #3399ff;
+  --bmw-gray: #4d4d4d;
+  --bmw-gray-light: #f5f5f5;
+  --transition: all 0.3s ease;
+}
