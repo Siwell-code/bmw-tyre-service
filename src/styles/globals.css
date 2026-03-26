@@ -7,11 +7,13 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
   }
   
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
   
   body {
@@ -21,42 +23,152 @@
     width: 100%;
   }
   
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold;
+  h1 {
+    @apply text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold;
+  }
+  
+  h2 {
+    @apply text-2xl xs:text-3xl sm:text-4xl font-bold;
+  }
+  
+  h3 {
+    @apply text-xl xs:text-2xl font-bold;
   }
 }
 
 @layer components {
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-    width: 100%;
+    @apply w-full mx-auto px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10;
+    max-width: 100%;
+  }
+  
+  @screen sm {
+    .container-custom {
+      max-width: 640px;
+    }
+  }
+  
+  @screen md {
+    .container-custom {
+      max-width: 768px;
+    }
+  }
+  
+  @screen lg {
+    .container-custom {
+      max-width: 1024px;
+    }
+  }
+  
+  @screen xl {
+    .container-custom {
+      max-width: 1280px;
+    }
   }
   
   .section {
-    @apply py-16 md:py-24;
+    @apply py-12 xs:py-16 sm:py-20 md:py-24;
   }
   
-  /* Исправление для iPhone */
+  .section-sm {
+    @apply py-8 xs:py-12 sm:py-16;
+  }
+  
+  /* Карточки */
+  .card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply hover:-translate-y-2 hover:shadow-2xl;
+  }
+  
+  /* Кнопки */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform;
+  }
+  
+  .btn-primary {
+    @apply bg-bmw-blue hover:bg-bmw-blue-dark text-white hover:scale-105;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-bmw-blue text-bmw-blue hover:bg-bmw-blue hover:text-white;
+  }
+  
+  /* Исправления для мобильных */
   input, button, textarea, select {
-    font-size: 16px !important; /* Предотвращает зум при фокусе на iPhone */
+    font-size: 16px !important;
     -webkit-appearance: none;
     appearance: none;
   }
   
   button {
     cursor: pointer;
+    touch-action: manipulation;
   }
   
   a {
     -webkit-touch-callout: none;
+    touch-action: manipulation;
+  }
+  
+  /* Сетка для мобильных */
+  .grid-mobile {
+    @apply grid grid-cols-1 gap-4 xs:gap-5 sm:gap-6;
+  }
+  
+  .grid-tablet {
+    @apply sm:grid-cols-2 md:grid-cols-3;
+  }
+  
+  .grid-desktop {
+    @apply lg:grid-cols-4;
   }
 }
 
-/* Анимации с оптимизацией для мобильных */
+/* Медиа-запросы для конкретных устройств */
+@screen xs {
+  .text-hero {
+    font-size: 2rem;
+  }
+}
+
+/* Адаптивные отступы для safe-area (iPhone X и выше) */
+@supports (padding: max(0px)) {
+  .safe-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Улучшенная прокрутка */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-bmw-blue rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-bmw-blue-dark;
+}
+
+/* Анимации с оптимизацией */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
