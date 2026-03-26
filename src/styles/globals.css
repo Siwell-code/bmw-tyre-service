@@ -214,3 +214,19 @@
 .backdrop-blur-xl {
   backdrop-filter: blur(20px);
 }
+
+.logo-gradient:hover span span {
+  animation: gradientShift 0.3s ease;
+}
+
+@keyframes gradientShift {
+  0% {
+    letter-spacing: normal;
+  }
+  50% {
+    letter-spacing: 1px;
+  }
+  100% {
+    letter-spacing: normal;
+  }
+}
