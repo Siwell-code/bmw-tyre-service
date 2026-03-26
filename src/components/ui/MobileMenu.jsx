@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
+import Logo from './Logo';
 
 const navigation = [
   { name: 'Главная', path: '/' },
@@ -19,12 +20,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
       <div className="flex flex-col h-full">
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b border-white/10">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-bmw-blue rounded-full flex items-center justify-center">
-              <span className="font-bold text-sm text-white">BMW</span>
-            </div>
-            <span className="font-bold text-white">Шиномонтаж</span>
-          </div>
+          <Logo variant="compact" />
           <button onClick={onClose} className="text-white text-2xl">
             <FaTimes />
           </button>
@@ -41,7 +37,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                     `block px-6 py-4 text-lg font-medium transition-colors ${
                       isActive 
                         ? 'text-bmw-blue bg-white/5' 
-                        : 'text-white hover:bg-white/5'
+                        : 'text-white/80 hover:text-white hover:bg-white/5'
                     }`
                   }
                   onClick={onClose}
@@ -57,7 +53,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         <div className="p-6 border-t border-white/10">
           <a 
             href="tel:+79991234567" 
-            className="block text-center text-white hover:text-bmw-blue transition-colors"
+            className="block text-center text-white/80 hover:text-bmw-blue transition-colors"
           >
             +7 (999) 123-45-67
           </a>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import Navigation from '../ui/Navigation';
+import Logo from '../ui/Logo';
 import MobileMenu from '../ui/MobileMenu';
 
 const Header = () => {
@@ -32,6 +32,15 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  const menuItems = [
+    { name: 'Главная', path: '/' },
+    { name: 'Ремонт дисков', path: '/wheel-repair' },
+    { name: 'Хранение шин', path: '/tyre-storage' },
+    { name: 'Покраска дисков', path: '/wheel-painting' },
+    { name: 'Ремонт шин', path: '/tyre-repair' },
+    { name: 'Контакты', path: '/contacts' },
+  ];
+
   return (
     <>
       <header 
@@ -44,33 +53,20 @@ const Header = () => {
         <div className="container-custom">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Логотип */}
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-bmw-blue rounded-full flex items-center justify-center">
-                <span className="font-bold text-sm md:text-lg text-white">BMW</span>
-              </div>
-              <span className="font-bold text-lg md:text-xl text-white">
-                Шиномонтаж
-              </span>
-            </Link>
+            <Logo variant="full" className="hidden md:flex" />
+            <Logo variant="compact" className="md:hidden" />
 
             {/* Навигация - десктоп */}
             <nav className="hidden lg:block">
               <ul className="flex space-x-8">
-                {[
-                  { name: 'Главная', path: '/' },
-                  { name: 'Ремонт дисков', path: '/wheel-repair' },
-                  { name: 'Хранение шин', path: '/tyre-storage' },
-                  { name: 'Покраска дисков', path: '/wheel-painting' },
-                  { name: 'Ремонт шин', path: '/tyre-repair' },
-                  { name: 'Контакты', path: '/contacts' },
-                ].map((item) => (
+                {menuItems.map((item) => (
                   <li key={item.path}>
                     <Link
                       to={item.path}
                       className={`text-sm font-medium transition-colors hover:text-bmw-blue ${
                         location.pathname === item.path 
                           ? 'text-bmw-blue' 
-                          : 'text-white'
+                          : 'text-white/80 hover:text-white'
                       }`}
                     >
                       {item.name}
@@ -83,7 +79,7 @@ const Header = () => {
             {/* Телефон */}
             <a 
               href="tel:+79991234567" 
-              className="hidden lg:block text-white hover:text-bmw-blue transition-colors text-sm font-medium"
+              className="hidden lg:block text-sm text-white/80 hover:text-bmw-blue transition-colors"
             >
               +7 (999) 123-45-67
             </a>
