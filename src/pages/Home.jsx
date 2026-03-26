@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaWrench, FaWarehouse, FaPaintRoller, FaCar, FaShieldAlt, FaTools, FaTachometerAlt, FaUserTie } from 'react-icons/fa';
+import { FaWrench, FaWarehouse, FaSprayCan, FaCar, FaShieldAlt, FaTools, FaTachometerAlt, FaUserTie } from 'react-icons/fa';
 
 const services = [
   {
@@ -18,7 +18,7 @@ const services = [
     price: 'от 2000 ₽/сезон'
   },
   {
-    icon: FaPaintRoller,
+    icon: FaSprayCan,  // ← заменили FaPaintRoller на FaSprayCan
     title: 'Покраска дисков',
     description: 'Полимерная порошковая покраска дисков в любой цвет',
     link: '/wheel-painting',
